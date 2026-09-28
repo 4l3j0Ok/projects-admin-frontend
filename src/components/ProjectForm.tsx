@@ -108,8 +108,9 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
     else if (description.trim().length > DESCRIPTION_MAX_LENGTH)
       result.description = `Máximo ${DESCRIPTION_MAX_LENGTH} caracteres.`;
 
-    if (!url.trim()) result.url = "La URL es obligatoria.";
-    else if (!isValidUrl(url.trim())) result.url = "Ingresá una URL válida (http o https).";
+    // Según el modelo de projects-api, url y repo_url son opcionales
+    if (url.trim() && !isValidUrl(url.trim()))
+      result.url = "Ingresá una URL válida (http o https).";
 
     if (repoUrl.trim() && !isValidUrl(repoUrl.trim()))
       result.repo_url = "Ingresá una URL válida (http o https).";
@@ -128,8 +129,8 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
     const formData = new FormData();
     formData.set("title", title.trim());
     formData.set("description", description.trim());
-    formData.set("url", url.trim());
-    // En edición, un repo vacío le indica a la API que lo quite
+    // En edición, un valor vacío le indica a la API que quite la URL
+    if (url.trim() || isEditing) formData.set("url", url.trim());
     if (repoUrl.trim() || isEditing) formData.set("repo_url", repoUrl.trim());
     if (imageFile) formData.set("image", imageFile);
     if (isEditing && removeImage && !imageFile) formData.set("remove_image", "true");
@@ -215,7 +216,9 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
 
           <div className="field-row">
             <div className="field">
-              <label htmlFor={`${formId}-url`}>URL del sitio</label>
+              <label htmlFor={`${formId}-url`}>
+                URL del sitio <span className="optional">(opcional)</span>
+              </label>
               <input
                 id={`${formId}-url`}
                 name="url"

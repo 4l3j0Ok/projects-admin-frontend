@@ -150,6 +150,10 @@
   color: var(--text-muted);
 }
 
+.cell-links .muted {
+  color: var(--text-muted);
+}
+
 .cell-links a:hover {
   color: var(--accent);
 }

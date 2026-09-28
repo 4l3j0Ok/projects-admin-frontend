@@ -2,7 +2,7 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  url: string;
+  url: string | null;
   repo_url: string | null;
   image: string | null;
   active: boolean;

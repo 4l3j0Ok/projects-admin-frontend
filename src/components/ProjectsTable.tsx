@@ -59,9 +59,12 @@ export default function ProjectsTable({
                   <p>{project.description}</p>
                 </td>
                 <td data-label="Enlaces" className="cell-links">
-                  <a href={project.url} target="_blank" rel="noopener noreferrer">
-                    Sitio ↗
-                  </a>
+                  {project.url && (
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                      Sitio ↗
+                    </a>
+                  )}
+                  {!project.url && !project.repo_url && <span className="muted">—</span>}
                   {project.repo_url && (
                     <a href={project.repo_url} target="_blank" rel="noopener noreferrer">
                       Repo ↗
