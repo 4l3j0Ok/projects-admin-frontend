@@ -62,7 +62,7 @@ pnpm build # astro check + build
 
 ## Despliegue
 
-Al crear un tag en `main`, Woodpecker construye y publica `alejoide/projects-admin-frontend` y dispara el deploy de [alejoide.com](https://github.com/4l3j0Ok/alejoide.com), cuyo `deploy/compose.yaml` define el servicio. En nginx-proxy-manager se crea un proxy host hacia `projects-admin-frontend:4321` con una access list que limite el acceso a la red interna.
+Al crear un tag en `main`, Woodpecker construye y publica la imagen `alejoide/projects-admin-frontend`. El servicio se define en `deploy/compose.yaml` de [alejoide.com](https://github.com/4l3j0Ok/alejoide.com), que toma sus variables del `.env` único de `deploy/` (`PROJECTS_ADMIN_FRONTEND_*` y la clave compartida `PROJECTS_API_ADMIN_API_KEY`). En nginx-proxy-manager se crea un proxy host hacia `projects-admin-frontend:4321` con una access list que limite el acceso a la red interna.
 
 ## Licencia
 
