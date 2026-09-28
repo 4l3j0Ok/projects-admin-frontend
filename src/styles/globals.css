@@ -1,0 +1,321 @@
+/* Paleta compartida con alejoide.com (src/styles/globals.css del sitio público) */
+:root {
+  /* ── Brand / Accent ── */
+  --accent: #ff6b35;
+  --accent-dark: #e85d04;
+  --accent-muted: rgba(255, 107, 53, 0.14);
+  --accent-soft: rgba(255, 107, 53, 0.55);
+  --accent-glow: rgba(255, 107, 53, 0.17);
+
+  /* ── Background ── */
+  --background-left: #000000;
+  --background-right: #0a0a0a;
+
+  /* ── Surface ── */
+  --surface-soft: rgba(20, 20, 20, 0.56);
+  --surface-strong: rgba(15, 15, 15, 0.92);
+  --surface-header: rgba(20, 20, 20, 0.74);
+  --surface-row-hover: rgba(255, 107, 53, 0.05);
+  --backdrop: rgba(0, 0, 0, 0.7);
+
+  /* ── Text ── */
+  --text-primary: #fafafa;
+  --text-muted: #a1a1aa;
+  --text-dark: #1a0a00;
+  --selection-text: #1a0a00;
+
+  /* ── Border ── */
+  --border-soft: rgba(255, 107, 53, 0.2);
+  --border-neutral: rgba(255, 255, 255, 0.08);
+
+  /* ── Block / Input ── */
+  --input-background: #141414;
+  --input-text: #fafafa;
+  --block: #1a1a1a;
+
+  /* ── Shadow ── */
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 14px 40px rgba(0, 0, 0, 0.5);
+
+  /* ── State ── */
+  --danger: #ef4444;
+  --danger-muted: rgba(239, 68, 68, 0.14);
+  --danger-soft: rgba(239, 68, 68, 0.5);
+  --success: #22c55e;
+  --success-muted: rgba(34, 197, 94, 0.14);
+  --success-soft: rgba(34, 197, 94, 0.45);
+
+  /* ── Layout ── */
+  --content-width: min(1200px, 94vw);
+  --radius: 0.72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Manrope Variable", sans-serif;
+  color: var(--text-primary);
+  color-scheme: dark;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--selection-text);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 10%, var(--accent-glow), transparent 34%),
+    linear-gradient(130deg, var(--background-left), var(--background-right));
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cascadia Code Variable", monospace;
+  margin: 0;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.container {
+  width: var(--content-width);
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Header ── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface-header);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Cascadia Code Variable", monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.brand-accent {
+  color: var(--accent);
+}
+
+.site-link {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+main.container {
+  padding: 2.5rem 0 4rem;
+}
+
+.page-heading {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.page-heading h1 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* ── Controls ── */
+input,
+textarea {
+  width: 100%;
+  padding: 0.72rem;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background-color: var(--input-background);
+  color: var(--input-text);
+  font: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--danger-soft);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+input[type="file"] {
+  padding: 0.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--accent-soft);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--accent);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-neutral);
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-dark);
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.button-ghost:hover:not(:disabled) {
+  border-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+.button-danger {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--text-primary);
+}
+
+.button-danger-ghost {
+  color: var(--danger);
+  border-color: var(--danger-muted);
+}
+
+.button-danger-ghost:hover:not(:disabled) {
+  background: var(--danger-muted);
+  border-color: var(--danger-soft);
+}
+
+.icon-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-neutral);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.icon-button:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
+
+/* ── Alerts ── */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.alert p {
+  color: inherit;
+}
+
+.alert-success {
+  background: var(--success-muted);
+  border-color: var(--success-soft);
+}
+
+.alert-error {
+  background: var(--danger-muted);
+  border-color: var(--danger-soft);
+}

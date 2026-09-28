@@ -1,0 +1,41 @@
+---
+// @ts-ignore
+import "@fontsource-variable/manrope";
+// @ts-ignore
+import "@fontsource-variable/cascadia-code";
+import "../styles/globals.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a href="/" class="brand">
+          <img src="/favicon.svg" alt="" width="28" height="28" />
+          <span>alejoide<span class="brand-accent">.admin</span></span>
+        </a>
+        <a href="https://alejoide.com/#Projects" target="_blank" rel="noopener noreferrer" class="site-link">
+          Ver sitio público ↗
+        </a>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+  </body>
+</html>

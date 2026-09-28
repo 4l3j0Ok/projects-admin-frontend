@@ -1,0 +1,15 @@
+---
+import ProjectsAdmin from "../components/ProjectsAdmin";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Administración de proyectos | alejoide">
+  <div class="page-heading">
+    <h1>Proyectos</h1>
+    <p>
+      Gestioná los proyectos que se muestran en alejoide.com. Los proyectos ocultos se conservan y
+      pueden restaurarse en cualquier momento.
+    </p>
+  </div>
+  <ProjectsAdmin client:load />
+</Layout>
