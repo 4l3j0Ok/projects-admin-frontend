@@ -1,3 +1,9 @@
+# [1.1.0](https://github.com/[secure]/projects-admin-frontend/compare/1.0.0...1.1.0) (2026-10-24)
+
+### Features
+
+* add featured projects ([db0c2fd](https://github.com/[secure]/projects-admin-frontend/commit/db0c2fd258e11e6ce80e783974ac2e4a1c480eb9))
+
 # 1.0.0 (2026-09-28)
 
 ### Bug Fixes
