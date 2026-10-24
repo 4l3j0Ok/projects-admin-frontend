@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/[secure]/projects-admin-frontend/compare/1.1.0...1.1.1) (2026-10-24)
+
+### Bug Fixes
+
+* upgrade deps ([08309ab](https://github.com/[secure]/projects-admin-frontend/commit/08309ab2a1259a307a908759fa9b236131b14985))
+
 # [1.1.0](https://github.com/[secure]/projects-admin-frontend/compare/1.0.0...1.1.0) (2026-10-24)
 
 ### Features
