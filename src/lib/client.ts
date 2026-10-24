@@ -36,6 +36,12 @@ export function updateProject(id: number, formData: FormData): Promise<Project> 
   return request<Project>(`/api/projects/${id}`, { method: "PUT", body: formData });
 }
 
+export function setProjectFeatured(id: number, featured: boolean): Promise<Project> {
+  const formData = new FormData();
+  formData.set("featured", String(featured));
+  return updateProject(id, formData);
+}
+
 export function setProjectActive(id: number, active: boolean): Promise<Project | undefined> {
   if (!active) {
     return request<undefined>(`/api/projects/${id}`, { method: "DELETE" });

@@ -7,6 +7,7 @@ import {
   TITLE_MAX_LENGTH,
 } from "../types/project";
 import type { Project } from "../types/project";
+import Switch from "./Switch";
 
 interface ProjectFormProps {
   project: Project | null;
@@ -39,6 +40,7 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
   const [description, setDescription] = useState<string>(project?.description ?? "");
   const [url, setUrl] = useState<string>(project?.url ?? "");
   const [repoUrl, setRepoUrl] = useState<string>(project?.repo_url ?? "");
+  const [featured, setFeatured] = useState<boolean>(project?.featured ?? true);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [removeImage, setRemoveImage] = useState<boolean>(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -132,6 +134,7 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
     // En edición, un valor vacío le indica a la API que quite la URL
     if (url.trim() || isEditing) formData.set("url", url.trim());
     if (repoUrl.trim() || isEditing) formData.set("repo_url", repoUrl.trim());
+    formData.set("featured", String(featured));
     if (imageFile) formData.set("image", imageFile);
     if (isEditing && removeImage && !imageFile) formData.set("remove_image", "true");
 
@@ -247,6 +250,23 @@ export default function ProjectForm({ project, onCancel, onSubmit }: ProjectForm
               />
               <span className="field-error">{errors.repo_url}</span>
             </div>
+          </div>
+
+          <div className="switch-field">
+            <div>
+              <span id={`${formId}-featured`} className="switch-field-label">
+                Destacado
+              </span>
+              <p className="switch-field-hint">
+                Si está apagado, el proyecto aparece en “Ver más” del sitio.
+              </p>
+            </div>
+            <Switch
+              checked={featured}
+              onChange={setFeatured}
+              label="Proyecto destacado"
+              disabled={submitting}
+            />
           </div>
 
           <div className="field">

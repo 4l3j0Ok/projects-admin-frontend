@@ -6,6 +6,7 @@ export interface Project {
   repo_url: string | null;
   image: string | null;
   active: boolean;
+  featured: boolean;
   created_at: string;
   updated_at: string;
 }

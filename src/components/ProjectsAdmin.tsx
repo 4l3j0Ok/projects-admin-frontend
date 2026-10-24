@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "../styles/admin.css";
 
-import { createProject, listProjects, setProjectActive, updateProject } from "../lib/client";
+import {
+  createProject,
+  listProjects,
+  setProjectActive,
+  setProjectFeatured,
+  updateProject,
+} from "../lib/client";
 import type { Project } from "../types/project";
 import ConfirmDialog from "./ConfirmDialog";
 import ProjectForm from "./ProjectForm";
@@ -109,6 +115,26 @@ export default function ProjectsAdmin() {
     }
   };
 
+  const handleToggleFeatured = async (project: Project, featured: boolean) => {
+    setBusyId(project.id);
+    try {
+      upsert(await setProjectFeatured(project.id, featured));
+      setNotice({
+        type: "success",
+        text: featured
+          ? `"${project.title}" ahora es un proyecto destacado.`
+          : `"${project.title}" pasó a "Ver más".`,
+      });
+    } catch (error) {
+      setNotice({
+        type: "error",
+        text: error instanceof Error ? error.message : "No se pudo actualizar el proyecto.",
+      });
+    } finally {
+      setBusyId(null);
+    }
+  };
+
   const handleRestore = async (project: Project) => {
     setBusyId(project.id);
     try {
@@ -202,6 +228,7 @@ export default function ProjectsAdmin() {
           projects={visibleProjects}
           busyId={busyId}
           onEdit={(project) => setEditor({ mode: "edit", project })}
+          onToggleFeatured={(project, featured) => void handleToggleFeatured(project, featured)}
           onHide={setToHide}
           onRestore={(project) => void handleRestore(project)}
         />

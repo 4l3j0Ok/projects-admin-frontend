@@ -1,9 +1,11 @@
 import type { Project } from "../types/project";
+import Switch from "./Switch";
 
 interface ProjectsTableProps {
   projects: Project[];
   busyId: number | null;
   onEdit: (project: Project) => void;
+  onToggleFeatured: (project: Project, featured: boolean) => void;
   onHide: (project: Project) => void;
   onRestore: (project: Project) => void;
 }
@@ -22,6 +24,7 @@ export default function ProjectsTable({
   projects,
   busyId,
   onEdit,
+  onToggleFeatured,
   onHide,
   onRestore,
 }: ProjectsTableProps) {
@@ -33,6 +36,7 @@ export default function ProjectsTable({
             <th scope="col">Imagen</th>
             <th scope="col">Proyecto</th>
             <th scope="col">Enlaces</th>
+            <th scope="col">Destacado</th>
             <th scope="col">Estado</th>
             <th scope="col">Actualizado</th>
             <th scope="col">
@@ -70,6 +74,14 @@ export default function ProjectsTable({
                       Repo ↗
                     </a>
                   )}
+                </td>
+                <td data-label="Destacado">
+                  <Switch
+                    checked={project.featured}
+                    onChange={(featured) => onToggleFeatured(project, featured)}
+                    label={`${project.featured ? "Quitar de destacados" : "Destacar"}: ${project.title}`}
+                    disabled={busy}
+                  />
                 </td>
                 <td data-label="Estado">
                   <span className={`badge ${project.active ? "badge-active" : "badge-inactive"}`}>
