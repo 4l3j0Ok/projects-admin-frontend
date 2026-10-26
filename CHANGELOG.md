@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/[secure]/projects-admin-frontend/compare/1.1.1...1.1.2) (2026-10-26)
+
+### Bug Fixes
+
+* pin typescript to 6 ([4f57db7](https://github.com/[secure]/projects-admin-frontend/commit/4f57db792efa3efd7baef4090e5e97551963b9af))
+
 ## [1.1.1](https://github.com/[secure]/projects-admin-frontend/compare/1.1.0...1.1.1) (2026-10-24)
 
 ### Bug Fixes
